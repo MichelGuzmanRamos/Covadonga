@@ -13,7 +13,7 @@ public class Conexion {
     //
     String user="postgres";
     String pass="12345";
-    String url= "jdbc:postgresql://localhost:5432/Covadonga";
+    String url= "jdbc:postgresql://192.168.1.91:5432/Covadonga";
     
     public Connection conectar(){
         try{
