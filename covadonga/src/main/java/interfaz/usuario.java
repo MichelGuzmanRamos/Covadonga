@@ -101,7 +101,7 @@ public class usuario extends javax.swing.JFrame {
         dtRegistro.setDateFormatString("yyyy-MM-dd");
 
         btnClean.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnClean.setText("LIMPIAR");
+        btnClean.setText("limpiar");
         btnClean.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCleanActionPerformed(evt);
