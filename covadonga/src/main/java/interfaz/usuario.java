@@ -73,6 +73,11 @@ public class usuario extends javax.swing.JFrame {
         });
 
         cbCalle.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cbCalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCalleActionPerformed(evt);
+            }
+        });
 
         txtNumdomicilio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
@@ -236,6 +241,10 @@ public class usuario extends javax.swing.JFrame {
         txtNombre.setText("");
         txtNumdomicilio.setText("");
     }//GEN-LAST:event_btnCleanActionPerformed
+
+    private void cbCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCalleActionPerformed
 
     /**
      * @param args the command line arguments
