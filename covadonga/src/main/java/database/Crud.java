@@ -150,7 +150,7 @@ public class Crud extends Conexion {
         
     }
     
-    public int idtipoCliente(String tcliente){
+    public int idTipoCliente(String tcliente){
         Connection conexion= conectar();
         int id=0;
         String consulta="select id from tipo_cliente where tipo_cliente='"+tcliente+"'";
@@ -196,6 +196,29 @@ public class Crud extends Conexion {
         
     }
     
+    public void edificio(JComboBox combo, String calle){
+        Connection conexion= conectar();
+        String consulta="select e.nombre_edificio as edificio " +
+                "from edificio as e " +
+                "join calle as c on e.id_calle = c.id_calle " +
+                "where c.nombre_calle='"+calle+"'";
+        try{
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);
+            
+            while(rs.next()){
+                combo.addItem(rs.getString("edificio"));
+            }
+            st.close();
+            conexion.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,
+                        "Error tabla Tipo_cliente","Error de Busqueda",
+                        JOptionPane.ERROR_MESSAGE); 
+        } 
 
+    }
     
+
 }

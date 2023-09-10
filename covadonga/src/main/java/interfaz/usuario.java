@@ -10,6 +10,8 @@ public class usuario extends javax.swing.JFrame {
     public usuario() {
         initComponents();
         consulta.tipoCliente(cbTcliente);
+        txtDepartamento.setEnabled(false);
+        cbEdficio.setEnabled(false);
     }
 
     /**
@@ -126,6 +128,11 @@ public class usuario extends javax.swing.JFrame {
 
         cbContruccion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cbContruccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA", "CASA", "EDIFICIO", "ESCUELA", "TERRENO", "LOCALES", "DEPARTAMENTO" }));
+        cbContruccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbContruccionActionPerformed(evt);
+            }
+        });
 
         rbtnDueño.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         rbtnDueño.setText("Dueño");
@@ -152,16 +159,9 @@ public class usuario extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnInsert)
-                                .addGap(29, 29, 29))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnClean)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -172,8 +172,8 @@ public class usuario extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel12)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
@@ -197,8 +197,12 @@ public class usuario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(89, 303, Short.MAX_VALUE))
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnInsert)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnClean)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,11 +260,11 @@ public class usuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnInsert)
-                            .addComponent(btnClean))
-                        .addGap(56, 56, 56))
+                            .addComponent(btnClean)
+                            .addComponent(btnInsert))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -301,7 +305,7 @@ public class usuario extends javax.swing.JFrame {
         String fecha=((JTextField)dtRegistro.getDateEditor().getUiComponent()).getText();
         String referencia=txaReferencia.getText();
         int idcalle=consulta.idCalle(calle);
-        int idtcliente=consulta.idtipoCliente(tcliente);
+        int idtcliente=consulta.idTipoCliente(tcliente);
         
         consulta.altaUsuario(nombre, idcalle, numDomicilio, idtcliente, telefono, fecha, referencia);
         
@@ -317,6 +321,25 @@ public class usuario extends javax.swing.JFrame {
     private void cbCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCalleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCalleActionPerformed
+
+    private void cbContruccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbContruccionActionPerformed
+        // TODO add your handling code here:
+        String construccion= cbContruccion.getSelectedItem().toString();
+        String calle=cbCalle.getSelectedItem().toString();
+        if(!"SELECCIONA".equals(construccion)){
+            if("EDIFICIO".equals(construccion)){
+               cbEdficio.setEnabled(true);
+               consulta.edificio(cbEdficio, calle);
+            }if("DEPARTAMENTO".equals(calle)){
+                cbEdficio.setEnabled(true);
+                txtDepartamento.setEnabled(true);
+                consulta.edificio(cbEdficio, calle);
+            }
+       }
+        else{
+            
+        }
+    }//GEN-LAST:event_cbContruccionActionPerformed
 
     /**
      * @param args the command line arguments
