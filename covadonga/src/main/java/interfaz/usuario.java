@@ -10,8 +10,6 @@ public class usuario extends javax.swing.JFrame {
     public usuario() {
         initComponents();
         consulta.tipoCliente(cbTcliente);
-        txtDepartamento.setEnabled(false);
-        cbEdficio.setEnabled(false);
     }
 
     /**
@@ -44,13 +42,13 @@ public class usuario extends javax.swing.JFrame {
         dtRegistro = new com.toedter.calendar.JDateChooser();
         btnClean = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        cbContruccion = new javax.swing.JComboBox<>();
-        rbtnDueño = new javax.swing.JRadioButton();
-        rbtnIndependiente = new javax.swing.JRadioButton();
+        cbConstruccion = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        cbEdficio = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         txtNumdomicilio1 = new javax.swing.JTextField();
+        cbEdificio = new javax.swing.JComboBox<>();
+        cbUsuariodept = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,30 +124,29 @@ public class usuario extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel10.setText("Construcción:");
 
-        cbContruccion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cbContruccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA", "CASA", "EDIFICIO", "ESCUELA", "TERRENO", "LOCALES", "DEPARTAMENTO" }));
-        cbContruccion.addActionListener(new java.awt.event.ActionListener() {
+        cbConstruccion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cbConstruccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA", "CASA", "EDIFICIO", "ESCUELA", "TERRENO", "LOCALES", "DEPARTAMENTO" }));
+        cbConstruccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbContruccionActionPerformed(evt);
+                cbConstruccionActionPerformed(evt);
             }
         });
 
-        rbtnDueño.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        rbtnDueño.setText("Dueño");
-
-        rbtnIndependiente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        rbtnIndependiente.setText("Independiente");
-
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel11.setText("Edificio:");
-
-        cbEdficio.setEditable(true);
-        cbEdficio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setText("Domicilio/Edificio:");
 
         txtNumdomicilio1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+
+        cbEdificio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+
+        cbUsuariodept.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cbUsuariodept.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONA", "DUEÑO EDIFICIO", "INQUILINO", "DUEÑO DEPARTAMENTO" }));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel13.setText("Tipo de usuario");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,10 +160,6 @@ public class usuario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbTcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -177,19 +170,14 @@ public class usuario extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNumdomicilio1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbtnDueño)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbtnIndependiente))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNombre)
-                                .addComponent(cbZona, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbCalle, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbContruccion, 0, 400, Short.MAX_VALUE)
-                                .addComponent(cbEdficio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNombre)
+                            .addComponent(cbZona, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbCalle, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbConstruccion, 0, 400, Short.MAX_VALUE)
+                            .addComponent(txtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbEdificio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -198,6 +186,14 @@ public class usuario extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbUsuariodept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbTcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnInsert)
                         .addGap(18, 18, 18)
@@ -222,15 +218,15 @@ public class usuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(cbContruccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbConstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(cbEdficio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbEdificio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnDueño)
-                    .addComponent(rbtnIndependiente))
+                    .addComponent(cbUsuariodept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -258,16 +254,13 @@ public class usuario extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnClean)
-                            .addComponent(btnInsert))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInsert)
+                    .addComponent(btnClean))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -278,7 +271,7 @@ public class usuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -322,24 +315,29 @@ public class usuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCalleActionPerformed
 
-    private void cbContruccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbContruccionActionPerformed
+    
+    private void cbConstruccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbConstruccionActionPerformed
         // TODO add your handling code here:
-        String construccion= cbContruccion.getSelectedItem().toString();
+        String construccion= cbConstruccion.getSelectedItem().toString();
         String calle=cbCalle.getSelectedItem().toString();
         if(!"SELECCIONA".equals(construccion)){
             if("EDIFICIO".equals(construccion)){
-               cbEdficio.setEnabled(true);
-               consulta.edificio(cbEdficio, calle);
-            }if("DEPARTAMENTO".equals(calle)){
-                cbEdficio.setEnabled(true);
+               consulta.edificio(cbEdificio, calle);
+            }else if("DEPARTAMENTO".equals(construccion)){
+                consulta.edificio(cbEdificio, calle);
                 txtDepartamento.setEnabled(true);
-                consulta.edificio(cbEdficio, calle);
             }
-       }
-        else{
-            
+            else {
+                cbEdificio.removeAllItems();
+                txtDepartamento.setEnabled(false);
+            }
+        }else{ 
+            txtDepartamento.setEnabled(false);
+            cbEdificio.removeAllItems();
         }
-    }//GEN-LAST:event_cbContruccionActionPerformed
+            
+       
+    }//GEN-LAST:event_cbConstruccionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,14 +348,16 @@ public class usuario extends javax.swing.JFrame {
     private javax.swing.JButton btnClean;
     private javax.swing.JButton btnInsert;
     private javax.swing.JComboBox<String> cbCalle;
-    private javax.swing.JComboBox<String> cbContruccion;
-    private javax.swing.JComboBox<String> cbEdficio;
+    private javax.swing.JComboBox<String> cbConstruccion;
+    private javax.swing.JComboBox<String> cbEdificio;
     private javax.swing.JComboBox<String> cbTcliente;
+    private javax.swing.JComboBox<String> cbUsuariodept;
     private javax.swing.JComboBox<String> cbZona;
     private com.toedter.calendar.JDateChooser dtRegistro;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -368,8 +368,6 @@ public class usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton rbtnDueño;
-    private javax.swing.JRadioButton rbtnIndependiente;
     private javax.swing.JTextArea txaReferencia;
     private javax.swing.JTextField txtDepartamento;
     private javax.swing.JTextField txtNombre;
