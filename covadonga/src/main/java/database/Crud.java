@@ -166,7 +166,7 @@ public class Crud extends Conexion {
         return id;
     }
     
-    public void altaUsuario (String nombre,int calle, String numDom,int tcliente,
+    public void altaDomicilio(String nombre,int calle, String numDom,int tcliente,
             String telefono,String registro, String referencia, int construccion){
         
         Connection conexion= conectar();
@@ -186,6 +186,45 @@ public class Crud extends Conexion {
                 "Error al ingresar los datos a la tabla Cliente", "Error de Actualización",
                 JOptionPane.ERROR_MESSAGE);
             
+        }
+    }
+    
+    public void antiguoTitular(JComboBox combo){
+        Connection conexion= conectar();
+        String consulta="select nombre from titular " +
+                "order by nombre asc";
+        try{
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);
+            
+            while(rs.next()){
+                combo.addItem(rs.getString("nombre"));
+            }
+            st.close();
+            conexion.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,
+                        "Error en Titular","Error de Busqueda",
+                        JOptionPane.ERROR_MESSAGE); 
+        } 
+        
+    }
+    
+    public void altaTitular(String nombre, String fecha, String telefono, boolean estatus, int t_cliente){
+        Connection conexion= conectar();
+        String consulta="insert into titular(nombre,fecha_nacimiento,telefono,estatus,tipo_cliente) " +
+                "values ('"+nombre+"','"+fecha+"','"+telefono+"',"+estatus+","+t_cliente+")";
+        try{
+            st=conexion.createStatement();
+            int valor = st.executeUpdate(consulta); 
+            if(valor>0){
+                
+            }
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(null,
+                "Error al ingresar los datos del Titular", "Error de ALTA TITULAR",
+                JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -254,5 +293,4 @@ public class Crud extends Conexion {
         }
         
     }
-
 }
