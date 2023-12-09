@@ -12,7 +12,7 @@ public class home extends javax.swing.JFrame {
     Crud busqueda = new Crud();
     
     public void presentacion(String nombre,String roll){
-        lName.setText(nombre);
+        lNombre.setText(nombre);
         lRoll.setText(busqueda.mayusculas(roll));
         lDate.setText(busqueda.fechaActual());
     }
@@ -36,10 +36,10 @@ public class home extends javax.swing.JFrame {
         btnCreateCalle = new javax.swing.JButton();
         btnCreateFactura = new javax.swing.JButton();
         BtnUsuario = new javax.swing.JButton();
-        btnNotificacion = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
         lRoll = new javax.swing.JLabel();
         lDate = new javax.swing.JLabel();
-        lName = new javax.swing.JLabel();
+        lNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +58,11 @@ public class home extends javax.swing.JFrame {
         });
 
         btnCreateCalle.setText("NUEVA CALLE");
+        btnCreateCalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateCalleActionPerformed(evt);
+            }
+        });
 
         btnCreateFactura.setText("FACTURA");
         btnCreateFactura.addActionListener(new java.awt.event.ActionListener() {
@@ -73,10 +78,10 @@ public class home extends javax.swing.JFrame {
             }
         });
 
-        btnNotificacion.setText("NOTIFICACION");
-        btnNotificacion.addActionListener(new java.awt.event.ActionListener() {
+        btnHistorial.setText("HISTORIAL");
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNotificacionActionPerformed(evt);
+                btnHistorialActionPerformed(evt);
             }
         });
 
@@ -86,8 +91,8 @@ public class home extends javax.swing.JFrame {
         lDate.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
         lDate.setText(".");
 
-        lName.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
-        lName.setText(".");
+        lNombre.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
+        lNombre.setText(".");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,9 +119,9 @@ public class home extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnReadDeudoresAcredores, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnNotificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lName, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -128,7 +133,7 @@ public class home extends javax.swing.JFrame {
                     .addComponent(lRoll)
                     .addComponent(lDate))
                 .addGap(18, 18, 18)
-                .addComponent(lName)
+                .addComponent(lNombre)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,7 +141,7 @@ public class home extends javax.swing.JFrame {
                     .addComponent(BtnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnNotificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCreateCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnReadDeudoresAcredores, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -160,7 +165,7 @@ public class home extends javax.swing.JFrame {
     private void btnCreateUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUsuarioActionPerformed
         // TODO add your handling code here:
         usuario ventana =new usuario();
-        ventana.responsable(lName.getText());
+        ventana.responsable(lNombre.getText());
         ventana.setVisible(true);
         ventana.setLocationRelativeTo(null);
         this.setVisible(false);
@@ -175,13 +180,29 @@ public class home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReadDeudoresAcredoresActionPerformed
 
-    private void btnNotificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNotificacionActionPerformed
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        busqueda ventana =new busqueda();
+        ventana.presentacion(lNombre.getText(),lRoll.getText());
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnCreateFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateFacturaActionPerformed
-        // TODO add your handling code here:
+        factura ventana =new factura();
+        ventana.presentacion(lNombre.getText(),lRoll.getText());
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCreateFacturaActionPerformed
+
+    private void btnCreateCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCalleActionPerformed
+        calle ventana =new calle();
+        ventana.presentacion(lNombre.getText(),lRoll.getText());
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCreateCalleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -189,11 +210,11 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JButton btnCreateCalle;
     private javax.swing.JButton btnCreateFactura;
     private javax.swing.JButton btnCreateUsuario;
-    private javax.swing.JButton btnNotificacion;
+    private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnReadDeudoresAcredores;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lDate;
-    private javax.swing.JLabel lName;
+    private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lRoll;
     // End of variables declaration//GEN-END:variables
 }

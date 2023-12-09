@@ -179,6 +179,11 @@ public class usuario extends javax.swing.JFrame {
         cbTitular.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         cbCalle.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        cbCalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCalleActionPerformed(evt);
+            }
+        });
 
         cbTcliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
@@ -439,6 +444,10 @@ public class usuario extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_cbConstruccionActionPerformed
+
+    private void cbCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCalleActionPerformed
 
     /**
      * @param args the command line arguments

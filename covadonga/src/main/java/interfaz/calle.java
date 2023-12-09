@@ -4,17 +4,22 @@
  */
 package interfaz;
 
+import database.Crud;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author itzyg
  */
 public class calle extends javax.swing.JFrame {
-
-    /**
-     * Creates new form calle
-     */
+    Crud busqueda = new Crud();
     public calle() {
         initComponents();
+        
+    }
+    public void presentacion(String nombre,String roll){
+        lEncargado.setText(nombre);
+        lRoll.setText(busqueda.mayusculas(roll));
     }
 
     /**
@@ -32,6 +37,9 @@ public class calle extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jcZona = new javax.swing.JComboBox<>();
         btnInsert = new javax.swing.JButton();
+        lEncargado = new javax.swing.JLabel();
+        lRoll = new javax.swing.JLabel();
+        btnInsert1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,33 +50,68 @@ public class calle extends javax.swing.JFrame {
         jLabel3.setText("Zona:");
 
         jcZona.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jcZona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "ALTA", "MEDIA", "BAJA" }));
 
         btnInsert.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnInsert.setText("Ingresar");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
+
+        lEncargado.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
+        lEncargado.setText(".");
+
+        lRoll.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
+        lRoll.setText(".");
+
+        btnInsert1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnInsert1.setText("principal");
+        btnInsert1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsert1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jcZona, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInsert1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnInsert)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcZona, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnInsert)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lEncargado)
+                        .addComponent(lRoll))
+                    .addComponent(btnInsert1))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,11 +131,51 @@ public class calle extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        String zona=jcZona.getSelectedItem().toString();
+        String id_zona;
+        int texto=txtCalle.getText().trim().length();
+        if(zona.equals("ALTA")&& texto>0){
+            id_zona="1";
+            busqueda.altaCalle(txtCalle.getText().trim(), id_zona);
+        }else if(zona.equals("MEDIA") && texto>0){
+            id_zona="2";
+            busqueda.altaCalle(txtCalle.getText().trim(), id_zona);
+        }else if(zona.equals("BAJA") && texto>0){
+            id_zona="3";
+            busqueda.altaCalle(txtCalle.getText().trim(), id_zona);
+        }else{
+            if(zona.equals("---") && texto==0){
+                JOptionPane.showMessageDialog(null,
+                        "Verifica tus datos del nombre de la calle y la zona", "RECIBO",
+                        JOptionPane.ERROR_MESSAGE);
+            }else{
+                if(zona.equals("---")){
+                JOptionPane.showMessageDialog(null,
+                        "Escoje la zona de la nueva calle", "RECIBO",
+                        JOptionPane.ERROR_MESSAGE);
+                }else if(texto==0){
+                JOptionPane.showMessageDialog(null,
+                        "Verifica el nombre de la calle", "RECIBO",
+                        JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void btnInsert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsert1ActionPerformed
+        home ventana =new home();
+        ventana.presentacion(lEncargado.getText(), lRoll.getText());
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnInsert1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,10 +183,13 @@ public class calle extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInsert;
+    private javax.swing.JButton btnInsert1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jcZona;
+    private javax.swing.JLabel lEncargado;
+    private javax.swing.JLabel lRoll;
     private javax.swing.JTextField txtCalle;
     // End of variables declaration//GEN-END:variables
 }

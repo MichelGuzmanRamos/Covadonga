@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class Crud extends Conexion {
@@ -130,7 +133,7 @@ public class Crud extends Conexion {
     }
     public String fechaActual(){
         String fecha;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date fechaactual = new Date();
         fecha=sdf.format(fechaactual);
         return fecha;
@@ -216,6 +219,8 @@ public class Crud extends Conexion {
                     "Ingresado al sistema al Titular: " +nombre, "Actualización",
                     JOptionPane.INFORMATION_MESSAGE);
             }
+            st.close();
+            conexion.close();
         }catch(Exception e){
              JOptionPane.showMessageDialog(null,
                 "Error al ingresar los datos a la tabla Cliente", "Error de Actualización",
@@ -254,6 +259,8 @@ public class Crud extends Conexion {
             if(valor>0){
                 
             }
+            st.close();
+            conexion.close();
         }catch(Exception e){
              JOptionPane.showMessageDialog(null,
                 "Error al ingresar los datos del Titular", "Error de ALTA TITULAR",
@@ -318,6 +325,8 @@ public class Crud extends Conexion {
                     "Ingresado a la seccion de departamento", "Actualización",
                     JOptionPane.INFORMATION_MESSAGE);
             }
+            st.close();
+            conexion.close();
         }catch(Exception e){
             
         }
@@ -333,4 +342,251 @@ public class Crud extends Conexion {
         fecha= fechaHoraActual.format(formato);
         return fecha;
         }
+    public void reciboDatos(String id_titular,JLabel nombre, JLabel tipo_cliente, JLabel direccion){
+        Connection conexion= conectar();
+        String consulta="select t.nombre||' '||t.apellido_paterno||' '||t.apellido_materno as nombre_completo, " +
+                "tp.tipo_cliente as cliente, " +
+                "c.nombre_calle||' '||d.num_domicilio as direccion " +
+                "from titular as t " +
+                "join tipo_cliente as tp " +
+                "on t.tipo_cliente=tp.id " +
+                "join direccion as d " +
+                "on d.id_titular=t.id_titular " +
+                "join calle as c " +
+                "on c.id_calle=d.id_calle " +
+                "where t.id_titular= '"+id_titular+"'";
+        try{
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);
+            if(rs.next()){ 
+               nombre.setText(rs.getString("nombre_completo"));
+               tipo_cliente.setText(rs.getString("cliente"));
+               direccion.setText(rs.getString("direccion"));
+            }
+            st.close();
+            conexion.close();
+        }catch(Exception e){
+            
+            }
+        }
+    public void cConcepto(JComboBox combo){
+        
+        Connection conexion= conectar();
+        String consulta="select clave from tipo_concepto";
+        try{
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);
+            
+            while(rs.next()){
+                combo.addItem(rs.getString("clave"));
+            }
+            st.close();
+            conexion.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,
+                        "error del sistema","Error de Busqueda",
+                        JOptionPane.ERROR_MESSAGE); 
+        }
     }
+    public void montoPago(String clave, JLabel monto){
+        Connection conexion= conectar();
+        String consulta="select monto from tipo_concepto " +
+                "where clave='"+clave+"'";
+        try{
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);
+            if(rs.next()){ 
+               monto.setText("$"+rs.getString("monto"));
+            }
+            st.close();
+            conexion.close();
+        }catch(Exception e){
+            
+        }   
+    }
+    public String id_concepto(String clave){
+        Connection conexion= conectar();
+        String consulta="select id_tconcepto as concepto from tipo_concepto " +
+                "where clave='"+clave+"'";
+        String concepto="";
+        try{
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);
+            if(rs.next()){ 
+               concepto=rs.getString("concepto");
+            }
+            st.close();
+            conexion.close();
+        }catch(Exception e){
+            
+        }   
+        return concepto;
+    }
+    public void altaRecibo(String folio, String titular, String concepto, String pago,
+             String monto, String empleado,String observacion,String fecha) {
+        Connection conexion = conectar();
+        String consulta = "INSERT INTO recibo(folio, id_titular, id_concepto, forma_pago, monto, empleado, observacion, fecha) " +
+                "VALUES ('"+folio+"', '"+titular+"', '"+concepto+"', '"+pago+"', '"+monto+"', '"+empleado+"', '"+observacion+"', '"+fecha+"')";
+
+        try {
+            st = conexion.createStatement();
+            int filasAfectadas = st.executeUpdate(consulta);
+
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null,
+                        "RECIBO GUARDADO", "RECIBO",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } 
+            st.close();
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Error al guardar el recibo", "RECIBO",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void historialDatos(String id_titular,JLabel nombre, JLabel telefono, JLabel direccion,JLabel zona){
+        Connection conexion= conectar();
+        String consulta="select t.nombre||' '||t.apellido_paterno||' '||t.apellido_materno as nombre_completo, " +
+                "t.telefono as telefono, " +
+                "c.nombre_calle||' '||d.num_domicilio as direccion, " +
+                "z.tipo_zona as tzona " +
+                "from titular as t " +
+                "join direccion as d " +
+                "on d.id_titular=t.id_titular " +
+                "join calle as c " +
+                "on c.id_calle=d.id_calle " +
+                "join zona as z " +
+                "on z.id_zona=c.id_zona " +
+                "where t.id_titular= '"+id_titular+"'";
+        try{
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);
+            if(rs.next()){ 
+               nombre.setText(rs.getString("nombre_completo"));
+               telefono.setText(rs.getString("telefono"));
+               direccion.setText(rs.getString("direccion"));
+               zona.setText(rs.getString("tzona"));
+            }
+            st.close();
+            conexion.close();
+        }catch(Exception e){
+            
+            }
+        }
+    
+    public void historialRecibos(JTable tablaG,String id_titular){
+        Connection conexion= conectar();// conexion a la base de datos
+        
+        //consulta para mostrar a todos los emleados con su departamento
+        String consulta="select r.fecha as fecha, " +
+                "tc.descripcion as descripcion, " +
+                "r.forma_pago as fpago, " +
+                "r.monto as monto, " +
+                "r.observacion as observacion, " +
+                "r.empleado as empleado " +
+                "from recibo as r " +
+                "join tipo_concepto as tc " +
+                "on tc.id_tconcepto = r.id_concepto " +
+                "where id_titular= '"+id_titular+"'";
+        //Se diseña la tabla a mostrar
+        DefaultTableModel modelo= new DefaultTableModel();
+        TableRowSorter<TableModel>OrdenarTabla=new TableRowSorter<TableModel>(modelo);
+        
+        tablaG.setRowSorter(OrdenarTabla);
+        
+        //cabeceras
+        modelo.addColumn("FECHA");
+        modelo.addColumn("CONCEPTO");
+        modelo.addColumn("FORMA DE PAGO");
+        modelo.addColumn("MONTO");
+        modelo.addColumn("OBSERVACION");
+        modelo.addColumn("EMPLEADO");
+        
+        tablaG.setModel(modelo);
+        String[] datos=new String [6];
+        
+        try {
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);// se ejecuta la aconsulta 
+            
+            //Llenado de la tabla
+            while(rs.next()){
+                
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                datos[3]="$"+rs.getString(4);
+                datos[4]=rs.getString(5);
+                datos[5]=rs.getString(6);
+                
+                modelo.addRow(datos);
+                
+            }
+            
+            
+            tablaG.setModel(modelo);
+           
+            st.close();
+            conexion.close();
+            
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null,
+                        "error del sistema","Error de Busqueda",
+                        JOptionPane.ERROR_MESSAGE);    
+        }
+    }
+    
+    public void altaCalle(String calle, String id_zona){
+        Connection conexion= conectar();
+        String consulta="INSERT INTO calle(nombre_calle, id_zona) " +
+                "VALUES ('"+calle+"','"+id_zona+"');";
+        try{
+            st=conexion.createStatement();
+            int valor = st.executeUpdate(consulta); 
+            if(valor>0){
+                JOptionPane.showMessageDialog(null,
+                        "NUEVA CALLE DADA DE ALTA ", "NUEVA CALLE",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+            st.close();
+            conexion.close();
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(null,
+                "Error al ingresar LA NUEVA CALLE", "Error de ALTA CALLE",
+                JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
+    public void ultimoPago(String id, JLabel fecha, JLabel folio, JLabel concepto,
+            JLabel pago,JTextArea observacion){
+        Connection conexion= conectar();
+        String consulta="select r.fecha, r.folio, " +
+                "c.clave as clave, r.monto, " +
+                "r.observacion " +
+                "from recibo as r " +
+                "join tipo_concepto as c " +
+                "on r.id_concepto = c.id_tconcepto " +
+                "where id_titular='"+id+"' " +
+                "order by DATE_TRUNC('day', r.fecha) + INTERVAL '1 day' - INTERVAL '1 second' DESC " +
+                "LIMIT 1";
+        try{
+            st=conexion.createStatement();
+            rs=st.executeQuery(consulta);
+            if(rs.next()){ 
+               fecha.setText(rs.getString("fecha"));
+               folio.setText(rs.getString("folio"));
+               concepto.setText(rs.getString("clave"));
+               pago.setText(rs.getString("monto"));
+               observacion.setText(rs.getString("observacion"));
+            }
+            st.close();
+            conexion.close();
+        }catch(Exception e){
+            
+        }
+    }
+    
+}
